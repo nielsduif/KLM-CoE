@@ -6,8 +6,8 @@ public class PlaneManager : MonoBehaviour
 {
     public static PlaneManager Instance { get; private set; }
 
-    [SerializeField] Plane[] planes;
-    [SerializeField] Hangar[] hangars;
+    [SerializeField] private Plane[] planes;
+    [SerializeField] private Hangar[] hangars;
 
     private void Awake()
     {
@@ -28,6 +28,8 @@ public class PlaneManager : MonoBehaviour
             Debug.LogError($"Amount of planes and hangars are not equal");
             return;
         }
+
+        GameManager.InitializeGameObjects(planes, hangars);
 
         for (int i = 0; i <= planes.Length - 1; i++)
         {
