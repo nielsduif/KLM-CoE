@@ -45,7 +45,6 @@ public class PlaneManager : MonoBehaviour
             _planeController.planeData = _planeData;
             planes.Add(_planeController);
 
-            icons[i].ID = i;
             _planeController.planePark = icons[i];
         }
     }
