@@ -122,9 +122,12 @@ public class PlaneController : MonoBehaviour
 
     public void FollowRoutine()
     {
-        SetDestination(CalculateRandomTarget());
-        StartChangeTargetCoroutine();
-        planeState = PlaneState.Routine;
-        parkIcon.ShowIcon(false);
+        if (planeState != PlaneState.Routine)
+        {
+            SetDestination(CalculateRandomTarget());
+            StartChangeTargetCoroutine();
+            planeState = PlaneState.Routine;
+            planePark.ShowIcon(false);
+        }
     }
 }
