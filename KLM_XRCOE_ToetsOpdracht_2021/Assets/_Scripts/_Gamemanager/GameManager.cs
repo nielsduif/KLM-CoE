@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < Hangars.Length; i++)
+        {
+            Hangars[i].ID = i;
+        }
+    }
+
     public static void InitializeGameObjects(Plane[] _planes, Hangar[] _hangars)
     {
         Planes = _planes;

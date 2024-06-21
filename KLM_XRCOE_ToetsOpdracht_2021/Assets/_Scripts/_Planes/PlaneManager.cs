@@ -19,6 +19,8 @@ public class PlaneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        GameManager.InitializeGameObjects(planes, hangars);
     }
 
     private void Start()
@@ -29,14 +31,9 @@ public class PlaneManager : MonoBehaviour
             return;
         }
 
-        GameManager.InitializeGameObjects(planes, hangars);
-
         for (int i = 0; i <= planes.Length - 1; i++)
         {
-            Plane _plane = planes[i];
-            GameObject _GOPlane = planes[i].prefab;
-            _GOPlane.name = $"{_plane.objectName}{i}";
-            Instantiate(_GOPlane, hangars[i].SpawnPosition, Quaternion.identity, transform);
+            Instantiate(planes[i].prefab, hangars[i].SpawnPosition, Quaternion.identity, transform);
         }
     }
 }

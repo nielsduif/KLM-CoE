@@ -15,7 +15,6 @@ public class Plane : ScriptableObject
         KLM
     }
 
-    public string objectName = "Plane";
     public GameObject prefab;
     public Type type;
     public Brand brand;
