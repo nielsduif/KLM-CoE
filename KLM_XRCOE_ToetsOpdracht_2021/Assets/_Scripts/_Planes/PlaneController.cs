@@ -11,6 +11,12 @@ public class PlaneController : MonoBehaviour
     private Light spotLight;
     public Hangar parkHangar { get; set; }
 
+    enum PlaneState
+    {
+        Routine,
+        Parking
+    }
+
     public void SetObjectName()
     {
         gameObject.name = $"{planeData.plane.brand}-{planeData.plane.type}-{planeData.ID}";
