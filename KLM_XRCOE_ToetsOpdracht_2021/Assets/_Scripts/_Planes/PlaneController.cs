@@ -61,7 +61,7 @@ public class PlaneController : MonoBehaviour
                 StopAllCoroutines();
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
-                    planePark.ShowParkIcon();
+                    planePark.ShowIcon(true);
                 }
                 break;
         }
@@ -125,5 +125,6 @@ public class PlaneController : MonoBehaviour
         SetDestination(CalculateRandomTarget());
         StartChangeTargetCoroutine();
         planeState = PlaneState.Routine;
+        planePark.ShowIcon(false);
     }
 }
