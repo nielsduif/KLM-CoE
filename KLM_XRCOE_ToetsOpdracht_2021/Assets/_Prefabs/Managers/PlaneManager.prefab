@@ -44,11 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7bc00802de63740a36b696bade7e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planes:
-  - {fileID: 11400000, guid: 02e5f8df2e590164bb01e3164ad305b2, type: 2}
-  - {fileID: 11400000, guid: 02e5f8df2e590164bb01e3164ad305b2, type: 2}
+  planeTypes:
+  - {fileID: 11400000, guid: ece7357d50dacd645b1ece5b7b6ed954, type: 2}
+  - {fileID: 11400000, guid: d04ad8f40ac37794b894b22ff0c99750, type: 2}
   - {fileID: 11400000, guid: 02e5f8df2e590164bb01e3164ad305b2, type: 2}
   hangars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  icons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

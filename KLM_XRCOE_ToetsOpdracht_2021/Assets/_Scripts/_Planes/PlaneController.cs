@@ -10,7 +10,7 @@ public class PlaneController : MonoBehaviour
     [SerializeField] int maxTime = 10;
     private Light spotLight;
     public Hangar parkHangar { get; set; }
-    public PlanePark planePark { get; set; }
+    public ParkIcon parkIcon { get; set; }
     private PlaneState planeState = PlaneState.Routine;
 
     enum PlaneState
@@ -41,7 +41,7 @@ public class PlaneController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         spotLight = GetComponentInChildren<Light>();
 
-        FollowRoutnine();
+        FollowRoutine();
 
         OnTargetReached += ChangeTarget;
         OnTimerElapsed += ChangeTarget;
@@ -61,7 +61,7 @@ public class PlaneController : MonoBehaviour
                 StopAllCoroutines();
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
-                    planePark.ShowIcon(true);
+                    parkIcon.ShowIcon(true);
                 }
                 break;
         }
@@ -120,11 +120,11 @@ public class PlaneController : MonoBehaviour
         planeState = PlaneState.Parking;
     }
 
-    public void FollowRoutnine()
+    public void FollowRoutine()
     {
         SetDestination(CalculateRandomTarget());
         StartChangeTargetCoroutine();
         planeState = PlaneState.Routine;
-        planePark.ShowIcon(false);
+        parkIcon.ShowIcon(false);
     }
 }
