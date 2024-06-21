@@ -7,7 +7,9 @@ public class Plane : ScriptableObject
 {
     public enum Type
     {
-        DeHavillandDH16
+        DeHavillandDH16,
+        FokkerFVII,
+        DouglasDC2
     }
 
     public enum Brand

@@ -5,6 +5,7 @@ using TMPro;
 
 public class Hangar : MonoBehaviour
 {
+    [SerializeField]
     private TMP_Text text;
     private int id;
 
@@ -20,10 +21,5 @@ public class Hangar : MonoBehaviour
                 id = value;
                 Text = $"{id}";    
             }
-    }
-
-    private void Awake()
-    {
-        text = GetComponentInChildren<TMP_Text>();
     }
 }

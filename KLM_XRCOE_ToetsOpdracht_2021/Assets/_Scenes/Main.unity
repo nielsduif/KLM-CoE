@@ -1330,21 +1330,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1504912561}
     m_Modifications:
-    - target: {fileID: 2036361229588017001, guid: e933b2f8a06b24a5b97f133aec098a8a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3681011253478756759, guid: e933b2f8a06b24a5b97f133aec098a8a, type: 3}
       propertyPath: m_Name
       value: Hangar0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3681011253478756759, guid: e933b2f8a06b24a5b97f133aec098a8a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955302282439203638, guid: e933b2f8a06b24a5b97f133aec098a8a, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9137396008541074674, guid: e933b2f8a06b24a5b97f133aec098a8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4222,6 +4210,22 @@ PrefabInstance:
       propertyPath: hangars.Array.data[2]
       value: 
       objectReference: {fileID: 1542290559}
+    - target: {fileID: 1884963242359796401, guid: d445370b6d231ed4eb422f8544d27938, type: 3}
+      propertyPath: planeTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884963242359796401, guid: d445370b6d231ed4eb422f8544d27938, type: 3}
+      propertyPath: planeTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ece7357d50dacd645b1ece5b7b6ed954, type: 2}
+    - target: {fileID: 1884963242359796401, guid: d445370b6d231ed4eb422f8544d27938, type: 3}
+      propertyPath: planeTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d04ad8f40ac37794b894b22ff0c99750, type: 2}
+    - target: {fileID: 1884963242359796401, guid: d445370b6d231ed4eb422f8544d27938, type: 3}
+      propertyPath: planeTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 02e5f8df2e590164bb01e3164ad305b2, type: 2}
     - target: {fileID: 8238603278290440738, guid: d445370b6d231ed4eb422f8544d27938, type: 3}
       propertyPath: m_Name
       value: PlaneManager

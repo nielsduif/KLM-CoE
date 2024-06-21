@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class PlaneData : MonoBehaviour
 {
-    public int id { get; set; }
+    public int ID { get; set; }
     public Plane plane { get; set; }
 }

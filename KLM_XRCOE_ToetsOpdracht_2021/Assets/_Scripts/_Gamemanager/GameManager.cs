@@ -5,8 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    private static List<PlaneController> Planes = new List<PlaneController>();
+    public static PlaneManager PlaneManager { get; set; }
     public static Hangar[] Hangars { get; set; }
 
     private void Awake()
@@ -23,19 +22,41 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PlaneManager.SpawnPlanes();
+        PlaneManager.AssignPlaneHangar();
+
         for (int i = 0; i < Hangars.Length; i++)
         {
             Hangars[i].ID = i;
         }
 
-        for (int i = 0; i < Planes.Count; i++)
+        for (int i = 0; i < PlaneManager.planes.Count; i++)
         {
-            Planes[i].planeData.id = i;
+            PlaneController plane = PlaneManager.planes[i];
+            plane.planeData.ID = i;
+            plane.SetObjectName();
         }
     }
 
-    public static void AddPlane(PlaneController plane)
+    private void Update()
     {
-        Planes.Add(plane);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ParkPlanes();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TogglePlaneLights();
+        }
+    }
+
+    public void TogglePlaneLights()
+    {
+        PlaneManager.TogglePlanesLight();
+    }
+
+    public void ParkPlanes()
+    {
+        PlaneManager.ParkPlanes();
     }
 }
