@@ -78,4 +78,12 @@ public class PlaneManager : MonoBehaviour
             plane.ParkPlane();
         }
     }
+
+    public void RoutinePlanes()
+    {
+        foreach (PlaneController plane in planes)
+        {
+            plane.FollowRoutnine();
+        }
+    }
 }
