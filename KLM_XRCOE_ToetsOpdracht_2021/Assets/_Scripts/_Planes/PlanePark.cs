@@ -15,8 +15,8 @@ public class PlanePark : MonoBehaviour
         image.enabled = false;
     }
 
-    public void ShowParkIcon()
+    public void ShowIcon(bool _value)
     {
-        image.enabled = true;
+        image.enabled = _value;
     }
 }

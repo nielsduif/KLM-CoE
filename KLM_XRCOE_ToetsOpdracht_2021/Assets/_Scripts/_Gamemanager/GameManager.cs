@@ -48,4 +48,9 @@ public class GameManager : MonoBehaviour
     {
         PlaneManager.ParkPlanes();
     }
+
+    public void RoutinePlanes()
+    {
+        PlaneManager.RoutinePlanes();
+    }
 }

@@ -41,8 +41,7 @@ public class PlaneController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         spotLight = GetComponentInChildren<Light>();
 
-        SetDestination(CalculateRandomTarget());
-        StartChangeTargetCoroutine();
+        FollowRoutnine();
 
         OnTargetReached += ChangeTarget;
         OnTimerElapsed += ChangeTarget;
@@ -62,7 +61,7 @@ public class PlaneController : MonoBehaviour
                 StopAllCoroutines();
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
-                    planePark.ShowParkIcon();
+                    planePark.ShowIcon(true);
                 }
                 break;
         }
@@ -119,5 +118,13 @@ public class PlaneController : MonoBehaviour
     {
         SetDestination(parkHangar.transform.position);
         planeState = PlaneState.Parking;
+    }
+
+    public void FollowRoutnine()
+    {
+        SetDestination(CalculateRandomTarget());
+        StartChangeTargetCoroutine();
+        planeState = PlaneState.Routine;
+        planePark.ShowIcon(false);
     }
 }
