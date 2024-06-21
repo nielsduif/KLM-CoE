@@ -9,6 +9,7 @@ public class PlaneManager : MonoBehaviour
     [SerializeField] private Plane[] planeTypes;
     [SerializeField] private Hangar[] hangars;
     public static List<PlaneController> planes { get; private set; } = new List<PlaneController>();
+    Dictionary<int, Hangar> hangarDict = new Dictionary<int, Hangar>();
 
     private void Awake()
     {
@@ -47,9 +48,14 @@ public class PlaneManager : MonoBehaviour
 
     public void AssignPlaneHangar()
     {
-        for (int i = 0; i < planes.Count; i++)
+        foreach (Hangar hangar in hangars)
         {
-            planes[i].parkHangar = hangars[i];
+            hangarDict[hangar.ID] = hangar;
+        }
+
+        foreach (PlaneController plane in planes)
+        {
+            plane.parkHangar = hangarDict[plane.planeData.ID];
         }
     }
 

@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlaneManager.SpawnPlanes();
-        PlaneManager.AssignPlaneHangar();
 
         for (int i = 0; i < Hangars.Length; i++)
         {
@@ -36,6 +35,8 @@ public class GameManager : MonoBehaviour
             plane.planeData.ID = i;
             plane.SetObjectName();
         }
+
+        PlaneManager.AssignPlaneHangar();
     }
 
     private void Update()
