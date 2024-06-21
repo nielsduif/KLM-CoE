@@ -10,6 +10,14 @@ public class PlaneController : MonoBehaviour
     [SerializeField] int maxTime = 10;
     private Light spotLight;
     public Hangar parkHangar { get; set; }
+    public PlanePark planePark { get; set; }
+    private PlaneState planeState = PlaneState.Routine;
+
+    enum PlaneState
+    {
+        Routine,
+        Parking
+    }
 
     public void SetObjectName()
     {
@@ -42,9 +50,21 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        if(agent.remainingDistance < agent.stoppingDistance)
+        switch (planeState)
         {
-            OnTargetReached?.Invoke();
+            case PlaneState.Routine:
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    OnTargetReached?.Invoke();
+                }
+                break;
+            case PlaneState.Parking:
+                StopAllCoroutines();
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    planePark.ShowParkIcon();
+                }
+                break;
         }
     }
 
@@ -70,7 +90,7 @@ public class PlaneController : MonoBehaviour
 
     private void ChangeTarget()
     {
-        if(changeTargetCoroutine != null)
+        if (changeTargetCoroutine != null)
         {
             StopCoroutine(changeTargetCoroutine);
         }
@@ -98,5 +118,6 @@ public class PlaneController : MonoBehaviour
     public void ParkPlane()
     {
         SetDestination(parkHangar.transform.position);
+        planeState = PlaneState.Parking;
     }
 }
