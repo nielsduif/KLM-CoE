@@ -8,7 +8,7 @@ public class PlaneManager : MonoBehaviour
 
     [SerializeField] private Plane[] planeTypes;
     [SerializeField] private Hangar[] hangars;
-    [SerializeField] private PlanePark[] icons;
+    [SerializeField] private ParkIcon[] icons;
     public static List<PlaneController> planes { get; private set; } = new List<PlaneController>();
     Dictionary<int, Hangar> hangarDict = new Dictionary<int, Hangar>();
 
@@ -45,7 +45,7 @@ public class PlaneManager : MonoBehaviour
             _planeController.planeData = _planeData;
             planes.Add(_planeController);
 
-            _planeController.planePark = icons[i];
+            _planeController.parkIcon = icons[i];
         }
     }
 
@@ -82,7 +82,7 @@ public class PlaneManager : MonoBehaviour
     {
         foreach (PlaneController plane in planes)
         {
-            plane.FollowRoutnine();
+            plane.FollowRoutine();
         }
     }
 }

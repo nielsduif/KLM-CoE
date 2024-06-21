@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlanePark : MonoBehaviour
+public class ParkIcon : MonoBehaviour
 {
     private RawImage image;
 
