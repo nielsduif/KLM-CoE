@@ -7,7 +7,9 @@ public class Plane : ScriptableObject
 {
     public enum Type
     {
-        DeHavillandDH16
+        DeHavillandDH16,
+        FokkerFVII,
+        DouglasDC2
     }
 
     public enum Brand
@@ -15,7 +17,6 @@ public class Plane : ScriptableObject
         KLM
     }
 
-    public string objectName = "Plane";
     public GameObject prefab;
     public Type type;
     public Brand brand;

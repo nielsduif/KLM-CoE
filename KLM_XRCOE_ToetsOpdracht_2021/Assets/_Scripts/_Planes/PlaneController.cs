@@ -5,22 +5,35 @@ using UnityEngine.AI;
 
 public class PlaneController : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    private NavMeshAgent agent;
     [SerializeField] private float searchRadius = 10;
-    private Vector3 target;
-    [SerializeField] int maxTime = 10, distanceThreshold = 1;
+    [SerializeField] int maxTime = 10;
+    private Light spotLight;
+    public Hangar parkHangar { get; set; }
 
+    public void SetObjectName()
+    {
+        gameObject.name = $"{planeData.plane.brand}-{planeData.plane.type}-{planeData.ID}";
+    }
+
+    public PlaneData planeData { get; set; }
+
+    #region Events
     public delegate void TargetReachedEventHandler();
     public event TargetReachedEventHandler OnTargetReached;
 
     public delegate void TimerElapsedEventHandler();
     public event TimerElapsedEventHandler OnTimerElapsed;
+    #endregion
 
     private Coroutine changeTargetCoroutine;
 
     private void Start()
     {
-        SetDestination();
+        agent = GetComponent<NavMeshAgent>();
+        spotLight = GetComponentInChildren<Light>();
+
+        SetDestination(CalculateRandomTarget());
         StartChangeTargetCoroutine();
 
         OnTargetReached += ChangeTarget;
@@ -29,17 +42,15 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        float _distance = Vector3.Distance(transform.position, target);
-        if(_distance < distanceThreshold)
+        if(agent.remainingDistance < agent.stoppingDistance)
         {
             OnTargetReached?.Invoke();
         }
     }
 
-    private void SetDestination()
+    private void SetDestination(Vector3 _target)
     {
-        target = CalculateRandomTarget();
-        agent.SetDestination(target);
+        agent.SetDestination(_target);
     }
 
     private Vector3 CalculateRandomTarget()
@@ -64,7 +75,7 @@ public class PlaneController : MonoBehaviour
             StopCoroutine(changeTargetCoroutine);
         }
 
-        SetDestination();
+        SetDestination(CalculateRandomTarget());
         StartChangeTargetCoroutine();
     }
 
@@ -77,5 +88,15 @@ public class PlaneController : MonoBehaviour
     {
         yield return new WaitForSeconds(maxTime);
         OnTimerElapsed?.Invoke();
+    }
+
+    public void ToggleLight()
+    {
+        spotLight.enabled = !spotLight.enabled;
+    }
+
+    public void ParkPlane()
+    {
+        SetDestination(parkHangar.transform.position);
     }
 }
