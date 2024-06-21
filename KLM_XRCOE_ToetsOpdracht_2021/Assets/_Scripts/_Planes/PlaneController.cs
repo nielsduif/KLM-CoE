@@ -5,21 +5,29 @@ using UnityEngine.AI;
 
 public class PlaneController : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    private NavMeshAgent agent;
     [SerializeField] private float searchRadius = 10;
     private Vector3 target;
-    [SerializeField] int maxTime = 10, distanceThreshold = 1;
+    [SerializeField] int maxTime = 10;
 
+    public PlaneData planeData { get; set; }
+
+    #region Events
     public delegate void TargetReachedEventHandler();
     public event TargetReachedEventHandler OnTargetReached;
 
     public delegate void TimerElapsedEventHandler();
     public event TimerElapsedEventHandler OnTimerElapsed;
+    #endregion
 
     private Coroutine changeTargetCoroutine;
 
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+
+        name = $"{planeData.plane.brand}-{planeData.plane.type}-{planeData.id}";
+
         SetDestination();
         StartChangeTargetCoroutine();
 
@@ -29,8 +37,7 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        float _distance = Vector3.Distance(transform.position, target);
-        if(_distance < distanceThreshold)
+        if(agent.remainingDistance < agent.stoppingDistance)
         {
             OnTargetReached?.Invoke();
         }

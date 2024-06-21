@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public static Plane[] Planes { get; private set; }
-    public static Hangar[] Hangars { get; private set; }
+    private static List<PlaneController> Planes = new List<PlaneController>();
+    public static Hangar[] Hangars { get; set; }
 
     private void Awake()
     {
@@ -27,11 +27,15 @@ public class GameManager : MonoBehaviour
         {
             Hangars[i].ID = i;
         }
+
+        for (int i = 0; i < Planes.Count; i++)
+        {
+            Planes[i].planeData.id = i;
+        }
     }
 
-    public static void InitializeGameObjects(Plane[] _planes, Hangar[] _hangars)
+    public static void AddPlane(PlaneController plane)
     {
-        Planes = _planes;
-        Hangars = _hangars;
+        Planes.Add(plane);
     }
 }

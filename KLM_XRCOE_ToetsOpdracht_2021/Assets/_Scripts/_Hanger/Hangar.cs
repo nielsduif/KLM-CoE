@@ -6,7 +6,6 @@ using TMPro;
 public class Hangar : MonoBehaviour
 {
     private TMP_Text text;
-    private Vector3 _spawnPosition;
     private int id;
 
     private string Text
@@ -26,11 +25,5 @@ public class Hangar : MonoBehaviour
     private void Awake()
     {
         text = GetComponentInChildren<TMP_Text>();
-        _spawnPosition = new Vector3(transform.position.x, 0, transform.position.z);
-    }
-
-    public Vector3 SpawnPosition
-    {
-        get { return _spawnPosition; }
     }
 }

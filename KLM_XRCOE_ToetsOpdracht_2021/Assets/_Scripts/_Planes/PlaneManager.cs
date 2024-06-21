@@ -19,12 +19,12 @@ public class PlaneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        GameManager.InitializeGameObjects(planes, hangars);
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        GameManager.Hangars = hangars;
+
         if (planes.Length != hangars.Length)
         {
             Debug.LogError($"Amount of planes and hangars are not equal");
@@ -33,7 +33,14 @@ public class PlaneManager : MonoBehaviour
 
         for (int i = 0; i <= planes.Length - 1; i++)
         {
-            Instantiate(planes[i].prefab, hangars[i].SpawnPosition, Quaternion.identity, transform);
+            GameObject newPlane = Instantiate(planes[i].prefab, hangars[i].transform.position, Quaternion.identity, transform);
+
+            PlaneData _planeData = newPlane.AddComponent<PlaneData>();
+            _planeData.plane = planes[i];
+            PlaneController planeController = newPlane.AddComponent<PlaneController>();
+            planeController.planeData = _planeData;
+
+            GameManager.AddPlane(planeController);
         }
     }
 }
